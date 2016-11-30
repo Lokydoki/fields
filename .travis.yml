@@ -15,12 +15,11 @@ before_script:
   - composer install -o
   - pear install pear/PHP_CodeSniffer
   - phpenv rehash
-  - wget http://downloads.atoum.org/nightly/atoum.phar
 
 script:
   - mysql -u root -e 'select version();'
   - phpcs -p --ignore=vendor --ignore=js --standard=tools/phpcs-rules.xml  .
-  - php atoum.phar -bf tests/bootstrap.php -d tests/units/
+  - ./vendor/bin/atoum -bf tests/bootstrap.php -d tests/units/
 
 matrix:
   include:
